@@ -51,6 +51,5 @@ public class Player {
     }
 
     public void transporteAleatorio() {
-        // Lógica para transporte aleatório
     }
 }
