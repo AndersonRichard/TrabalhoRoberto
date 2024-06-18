@@ -30,7 +30,7 @@ public class Output {
                         simboloInimigo = "W";
                     } else if (caverna.getInimigo() instanceof Poco) {
                         simboloInimigo = "P";
-                    } else { // Morcego
+                    } else {
                         simboloInimigo = "M";
                     }
                     System.out.print(" (" + simboloInimigo + ")");
