@@ -7,6 +7,7 @@ import java.util.Random;
 public class Jogo {
     private List<Caverna> cavernas;
     private Player player;
+    private static boolean jogoAtivo = true;
 
     public Jogo(int numCavernas) {
         cavernas = new ArrayList<>(numCavernas);
@@ -53,14 +54,18 @@ public class Jogo {
     }
 
     public void jogar() {
-        while (player.isVivo()) {
+        while (player.isVivo() && jogoAtivo) {
             Output.imprimirCavernaAtual(player.getCavernaAtual());
             Output.imprimirMapa(cavernas, player);
             Menu.exibirMenu();
             int opcao = Menu.lerOpcao();
             processarOpcao(opcao);
+            if (player.getFlechas() == 0){
+                System.out.println("Você não tem mais flechas e não pode mais se defender.");
+                jogoAtivo = false;
+            }
         }
-        Output.imprimirResultado("Fim do jogo!");
+        Output.imprimirResultado("GAME OVER: Você perdeu o jogo.");
     }
 
     private void processarOpcao(int opcao) {
@@ -141,14 +146,13 @@ public class Jogo {
             } else {
                 System.out.println("Não há inimigos na caverna para atirar.");
             }
-        } else {
-            System.out.println("Você não tem flechas.");
         }
     }
 
 
     public static void main(String[] args) {
-        Jogo jogo = new Jogo(20);
-        jogo.jogar();
+            Jogo jogo = new Jogo(20);
+            jogo.jogar();
+
     }
 }
